@@ -23,7 +23,6 @@ function setup() {
 
 	helicopterSprite=createSprite(0, 200, 10,10);
 	helicopterSprite.addImage(helicopterIMG)
-	helicopterSprite.velocityx=3
 	helicopterSprite.scale=0.6
 
 	groundSprite=createSprite(width/2, height-35, width,10);
@@ -63,8 +62,6 @@ function draw() {
   packageSprite.x= packageBody.position.x 
   packageSprite.y= packageBody.position.y
 
-  helicopterSprite.velocityX=3
-
   wall1.visible=false;
   wall2.visible=false;
 
@@ -73,6 +70,25 @@ function draw() {
   if (keyWentDown(DOWN_ARROW)) {
 	Body.setStatic(packageBody,false)
   }
+  if (keyCode === LEFT_ARROW) 
+		{ helicopterSprite.x=helicopterSprite.x-4; 
+			translation={x:-4,y:0}
+			Matter.Body.translate(packageBody, translation);
+		} else if (keyCode === RIGHT_ARROW) 
+		{ helicopterSprite.x=helicopterSprite.x+4;
+			translation={x:4,y:0}
+			Matter.Body.translate(packageBody, translation);
+		}
+
+  if (keyCode === RIGHT_ARROW) 
+		{ helicopterSprite.x=helicopterSprite.x+4; 
+			translation={x:+4,y:0}
+			Matter.Body.translate(packageBody, translation);
+		} else if (keyCode === RIGHT_ARROW) 
+		{ helicopterSprite.x=helicopterSprite.x-4;
+			translation={x:-4,y:0}
+			Matter.Body.translate(packageBody, translation);
+		}
 
   mark1.display();
   mark2.display();
@@ -83,6 +99,3 @@ function draw() {
 
   drawSprites();
 }
-
-
-
